@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 class MatrizCuadrada {
-    int numeroBase;
-    int[][] matriz;
+    int numeroBase, sumaDatos, promedioDatos;
+    double[][] matriz;
 
     MatrizCuadrada(int p_numeroBase) {
         this.numeroBase = p_numeroBase;
-        this.matriz = new int[p_numeroBase][p_numeroBase];
+        this.matriz = new double[p_numeroBase][p_numeroBase];
     }
 
     void imprimirMatriz() {
@@ -25,9 +25,10 @@ class MatrizCuadrada {
                 System.out
                         .println(
                                 "Ingrese el valor de la columna " + (columna + 1) + " de la fila " + (fila + 1) + ": ");
-                matriz[fila][columna] = scanner.nextInt();
+                matriz[fila][columna] = scanner.nextDouble();
             }
         }
         scanner.close();
     }
+
 }

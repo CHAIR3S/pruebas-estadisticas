@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+
+
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -36,6 +38,7 @@ class Main {
                 break;
             // Prueba de varianza
             case 2:
+            
 
                 break;
             // Prueba de uniformidad
