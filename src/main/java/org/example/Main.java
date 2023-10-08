@@ -1,9 +1,9 @@
 package org.example;
 
 import org.example.distribuciones.ChiSquared;
+import org.example.pruebas.Uniformidad;
 import org.example.pruebas.Media;
 import org.example.pruebas.Varianza;
-
 import java.util.Scanner;
 
 //import javax.print.attribute.standard.Media;
@@ -12,6 +12,7 @@ class Main {
     public static void main(String[] args) {
         // INSTANCIAS DE LAS PRUEBAS
         Varianza varianza;
+        Uniformidad uniformidad;
         Media media;
 
         // INSTANCIAS DE LAS DISTRIBUCIONES
@@ -48,6 +49,7 @@ class Main {
 
         // INICIALIZACIÓN DE LAS INSTANCIAS DE LAS PRUEBAS
         varianza = new Varianza( matriz, chiSquared );
+        uniformidad = new Uniformidad(matriz);
 
         // INICIALIZACIÓN DE LAS INSTANCIAS DE LAS PRUEBAS
         media = new Media(matriz);
@@ -64,7 +66,7 @@ class Main {
                 break;
             // Prueba de uniformidad
             case 3:
-
+            	uniformidad.realizarPrueba(nivelSignificancia);
                 break;
             // Prueba de indecencia
             case 4:

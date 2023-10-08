@@ -1,4 +1,4 @@
-package src.main.java.org.example.pruebas;
+package org.example.pruebas;
 
 import org.apache.commons.math3.distribution.ChiSquaredDistribution;
 import org.apache.commons.math3.distribution.RealDistribution;
