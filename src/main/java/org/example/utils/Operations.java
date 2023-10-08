@@ -20,4 +20,8 @@ public class Operations {
 
         return ( suma / ( matriz.length * matriz.length ));
     }
+    
+    public int contarDatosMatriz(double[][] matriz){
+        return matriz.length * matriz[0].length;
+      }
 }
