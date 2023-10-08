@@ -1,14 +1,18 @@
 package org.example;
 
 import org.example.distribuciones.ChiSquared;
+import org.example.pruebas.Media;
 import org.example.pruebas.Varianza;
 
 import java.util.Scanner;
+
+//import javax.print.attribute.standard.Media;
 
 class Main {
     public static void main(String[] args) {
         // INSTANCIAS DE LAS PRUEBAS
         Varianza varianza;
+        Media media;
 
         // INSTANCIAS DE LAS DISTRIBUCIONES
         ChiSquared chiSquared;
@@ -45,12 +49,14 @@ class Main {
         // INICIALIZACIÓN DE LAS INSTANCIAS DE LAS PRUEBAS
         varianza = new Varianza( matriz, chiSquared );
 
+        // INICIALIZACIÓN DE LAS INSTANCIAS DE LAS PRUEBAS
+        media = new Media(matriz);
 
         // SELECCIONAR MÉTODO Y HACERLO FUNCIONAR
         switch (opcionSeleccionada) {
             // Prueba de media
             case 1:
-
+                media.realizarPrueba(nivelSignificancia);
                 break;
             // Prueba de varianza
             case 2:
