@@ -1,9 +1,10 @@
-public class Prueba_Independencia {
-    float nivelInsignificancia;
+package src.main.java.org.example.pruebas;
+public class Independencia {
+    double nivelInsignificancia;
     double conjunto_de_numeros[][];
 
-    //El valor de independencia es float
-    Prueba_Independencia(double conjunto_de_numeros[][], float nivelInsignificancia){
+    //El valor de independencia es double
+    Independencia(double conjunto_de_numeros[][], double nivelInsignificancia){
         this.nivelInsignificancia = nivelInsignificancia;
         this.conjunto_de_numeros = conjunto_de_numeros;
     }
