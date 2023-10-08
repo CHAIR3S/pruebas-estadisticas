@@ -1,4 +1,9 @@
 package src.main.java.org.example.pruebas;
+
+import org.apache.commons.math3.distribution.ChiSquaredDistribution;
+import org.apache.commons.math3.distribution.RealDistribution;
+import org.apache.commons.math3.exception.NotStrictlyPositiveException;
+
 public class Independencia {
     double nivelInsignificancia;
     double conjunto_de_numeros[][];
@@ -86,10 +91,13 @@ public class Independencia {
         return resultado;
     }
 
-    //El valor de significancia nos sirve para calcular este valor
-    //Aún no sé cómo se calcula
     double Za_2(){
-        return 1.96;
+        double degreesOfFreedom = conjunto_de_numeros.length-1;
+        RealDistribution chiSquaredDistribution = new ChiSquaredDistribution(degreesOfFreedom);
+
+        double a_2 = nivelInsignificancia/2;
+        double cdf = chiSquaredDistribution.inverseCumulativeProbability(1 - a_2);
+        return cdf;
     };
 
 }
