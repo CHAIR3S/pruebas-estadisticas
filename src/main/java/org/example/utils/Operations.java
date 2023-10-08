@@ -23,5 +23,5 @@ public class Operations {
     
     public int contarDatosMatriz(double[][] matriz){
         return matriz.length * matriz[0].length;
-      }
+    }
 }
