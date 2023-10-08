@@ -12,6 +12,8 @@ public class Varianza {
         double promedio = oper.promediarDatosMatriz(matriz),
                 alphaMedios = alpha / 2;
 
+        double varianza = calcularVarianza(promedio);
+        System.out.println(varianza);
     }
 
     private double calcularVarianza( double promedio ){
@@ -20,7 +22,7 @@ public class Varianza {
 
         for ( indexV = 0; indexV < matriz.length; indexV++) {
             for ( indexH = 0; indexH < matriz.length; indexH++) {
-                datosVarianza[indexV][indexH] = Math.pow((  matriz[indexV][indexH] ),2);
+                datosVarianza[indexV][indexH] = Math.pow(( matriz[indexV][indexH] - promedio ), 2 );
             }
         }
 
