@@ -14,7 +14,7 @@ public class MatrizCuadrada {
     void imprimirMatriz() {
         for (int fila = 0; fila < matriz.length; fila++) {
             for (int columna = 0; columna < matriz[fila].length; columna++) {
-                System.out.printf("%4d", matriz[fila][columna]);
+                System.out.print("\t" + matriz[fila][columna] + "\t");
             }
             System.out.println();
         }

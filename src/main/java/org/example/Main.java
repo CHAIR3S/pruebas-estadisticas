@@ -1,14 +1,23 @@
 package org.example;
 
+import org.example.distribuciones.ChiSquared;
+import org.example.pruebas.Varianza;
+
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
+        // INSTANCIAS DE LAS PRUEBAS
+        Varianza varianza;
+
+        // INSTANCIAS DE LAS DISTRIBUCIONES
+        ChiSquared chiSquared;
+
         Scanner scanner = new Scanner(System.in);
         // INGRESAR MÉTODO REQUERIDO
         int opcionSeleccionada;
         int cantidadDeDatos;
-        float nivelInsignificancia;
+        double nivelSignificancia;
 
         do {
             System.out.print(
@@ -24,11 +33,18 @@ class Main {
         } while (Math.sqrt(cantidadDeDatos) != (int) Math.round(Math.sqrt(cantidadDeDatos)));
 
         System.out.print("Ingrese el nivel de significancia: ");
-        nivelInsignificancia = scanner.nextFloat();
+        nivelSignificancia = scanner.nextDouble();
 
         // INGRESAR DATOS
         MatrizCuadrada matriz = new MatrizCuadrada((int) Math.sqrt(cantidadDeDatos));
         matriz.leerdatos(scanner);
+
+        // INICIALIZACIÓN DE LAS INTANCIAS DE LAS PRUEBAS
+        chiSquared = new ChiSquared(cantidadDeDatos);
+
+        // INICIALIZACIÓN DE LAS INSTANCIAS DE LAS PRUEBAS
+        varianza = new Varianza( matriz, chiSquared );
+
 
         // SELECCIONAR MÉTODO Y HACERLO FUNCIONAR
         switch (opcionSeleccionada) {
@@ -38,7 +54,7 @@ class Main {
                 break;
             // Prueba de varianza
             case 2:
-
+                varianza.realizarPrueba(nivelSignificancia);
                 break;
             // Prueba de uniformidad
             case 3:
