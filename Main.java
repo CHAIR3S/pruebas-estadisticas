@@ -1,25 +1,14 @@
-package org.example;
-
-import org.example.distribuciones.ChiSquared;
-import org.example.pruebas.Uniformidad;
-import org.example.pruebas.Varianza;
-
 import java.util.Scanner;
+
+import src.main.java.org.example.pruebas.Independencia;
 
 class Main {
     public static void main(String[] args) {
-        // INSTANCIAS DE LAS PRUEBAS
-        Varianza varianza;
-        Uniformidad uniformidad;
-
-        // INSTANCIAS DE LAS DISTRIBUCIONES
-        ChiSquared chiSquared;
-
         Scanner scanner = new Scanner(System.in);
         // INGRESAR MÉTODO REQUERIDO
         int opcionSeleccionada;
         int cantidadDeDatos;
-        double nivelSignificancia;
+        float nivelInsignificancia;
 
         do {
             System.out.print(
@@ -34,38 +23,30 @@ class Main {
             cantidadDeDatos = scanner.nextInt();
         } while (Math.sqrt(cantidadDeDatos) != (int) Math.round(Math.sqrt(cantidadDeDatos)));
 
-        System.out.print("Ingrese el nivel de significancia: ");
-        nivelSignificancia = scanner.nextDouble();
+        System.out.println("Ingrese el nivel de significancia: ");
+        nivelInsignificancia = scanner.nextFloat();
 
-        // INGRESAR DATOS
+        // INGRESAR DATOS (Esta matriz debía ser de doubles)
         MatrizCuadrada matriz = new MatrizCuadrada((int) Math.sqrt(cantidadDeDatos));
         matriz.leerdatos(scanner);
-
-        // INICIALIZACIÓN DE LAS INTANCIAS DE LAS PRUEBAS
-        chiSquared = new ChiSquared(cantidadDeDatos);
-
-        // INICIALIZACIÓN DE LAS INSTANCIAS DE LAS PRUEBAS
-        varianza = new Varianza( matriz, chiSquared );
-        uniformidad = new Uniformidad(matriz);
-
 
         // SELECCIONAR MÉTODO Y HACERLO FUNCIONAR
         switch (opcionSeleccionada) {
             // Prueba de media
             case 1:
-
+                
                 break;
             // Prueba de varianza
             case 2:
-                varianza.realizarPrueba(nivelSignificancia);
+
                 break;
             // Prueba de uniformidad
             case 3:
-            	uniformidad.realizarPrueba(nivelSignificancia);
+                
                 break;
             // Prueba de indecencia
             case 4:
-
+                
                 break;
         }
 
@@ -76,3 +57,4 @@ class Main {
         scanner.close();
     }
 }
+

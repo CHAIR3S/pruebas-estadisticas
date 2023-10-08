@@ -1,5 +1,7 @@
 package org.example.utils;
 
+import java.text.DecimalFormat;
+
 public class Operations {
 
     public double sumarDatosMatriz( double[][] matriz ){
@@ -23,5 +25,13 @@ public class Operations {
     
     public int contarDatosMatriz(double[][] matriz){
         return matriz.length * matriz[0].length;
+    }
+    
+    public double redondearTresDecimales(double numero) {
+    	DecimalFormat formato = new DecimalFormat("#.###");
+        
+        String numeroRedondeado = formato.format(numero);
+        
+        return Double.parseDouble(numeroRedondeado);
     }
 }
