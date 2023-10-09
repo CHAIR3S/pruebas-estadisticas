@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.distribuciones.ChiSquared;
 import org.example.pruebas.Uniformidad;
+import org.example.pruebas.Independencia;
 import org.example.pruebas.Media;
 import org.example.pruebas.Varianza;
 import java.util.Scanner;
@@ -11,9 +12,10 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         // INSTANCIAS DE LAS PRUEBAS
-        Varianza varianza;
+        Varianza varianza; 
         Uniformidad uniformidad;
         Media media;
+        Independencia independencia;
 
         // INSTANCIAS DE LAS DISTRIBUCIONES
         ChiSquared chiSquared;
@@ -46,12 +48,10 @@ class Main {
 
         // INICIALIZACIÓN DE LAS INTANCIAS DE LAS PRUEBAS
         chiSquared = new ChiSquared(cantidadDeDatos);
-
-        // INICIALIZACIÓN DE LAS INSTANCIAS DE LAS PRUEBAS
         varianza = new Varianza( matriz, chiSquared );
         uniformidad = new Uniformidad(matriz);
+        independencia = new Independencia(matriz);
 
-        // INICIALIZACIÓN DE LAS INSTANCIAS DE LAS PRUEBAS
         media = new Media(matriz);
 
         // SELECCIONAR MÉTODO Y HACERLO FUNCIONAR
@@ -70,7 +70,7 @@ class Main {
                 break;
             // Prueba de indecencia
             case 4:
-
+                independencia.realizarPrueba(nivelSignificancia);
                 break;
         }
 

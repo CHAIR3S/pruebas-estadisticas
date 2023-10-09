@@ -1,39 +1,46 @@
 package org.example.pruebas;
 
 import org.apache.commons.math3.distribution.ChiSquaredDistribution;
+import org.apache.commons.math3.distribution.NormalDistribution;
 import org.apache.commons.math3.distribution.RealDistribution;
 import org.apache.commons.math3.exception.NotStrictlyPositiveException;
+import org.example.MatrizCuadrada;
 
 public class Independencia {
-    double nivelInsignificancia;
-    double conjunto_de_numeros[][];
+    MatrizCuadrada conjunto_de_numeros;
 
-    //El valor de independencia es double
-    Independencia(double conjunto_de_numeros[][], double nivelInsignificancia){
-        this.nivelInsignificancia = nivelInsignificancia;
-        this.conjunto_de_numeros = conjunto_de_numeros;
+    public Independencia(MatrizCuadrada matriz){
+        this.conjunto_de_numeros = matriz;
     }
 
-    void realizarPrueba(){
+    public void realizarPrueba(double nivelInsignificancia){
         String secuencia = calcularSecuencia(this.conjunto_de_numeros);
         int Co = calcular_CO(secuencia);
-        double UCo = calcular_UCo(this.conjunto_de_numeros.length);
-        double OCo = calcular_OCo(this.conjunto_de_numeros.length);
+        double UCo = calcular_UCo(this.conjunto_de_numeros.matriz.length*this.conjunto_de_numeros.matriz.length);
+        double OCo = calcular_OCo(this.conjunto_de_numeros.matriz.length*this.conjunto_de_numeros.matriz.length);
 
         double Zo = Zo(Co, UCo, OCo);
-        double Za_2 = Za_2();
-        //IMprime los resultados
+        //double Za_2 = Za_2(nivelInsignificancia);
+        double Za_2 = calculoValorZ(nivelInsignificancia/2);
+
+        //Imprime los resultados
+        System.out.println("\n\n----------Datos de la prueba de independencia----------");
+        System.out.println("\nCo: "+Co);
+        System.out.println("UCo: "+UCo);
+        System.out.println("OCo: "+OCo+"\n");
 
         //Evalúa cuál es la conclusión 
         if(Zo > Za_2){
-            System.out.println("Los números del conjunto Ri no son independientes");
+            System.out.println("Zo:"+ Zo +" es mayor que el valor crítico Zalfa/2: "+Za_2);
+            System.out.println("Conclusión: Los números del conjunto Ri no son independientes");
         }else{
-            System.out.println("Los números del conjunto Ri son independientes");
-        }
+            System.out.println("Zo:"+ Zo +" es menor que el valor crítico Zalfa/2: "+Za_2);
+            System.out.println("Conclusión: Los números del conjunto Ri sí son independientes");
+        }System.out.println();
     }
 
-    String calcularSecuencia(double[][] conjunto_de_numeros){
-        int longitud = conjunto_de_numeros.length;
+    String calcularSecuencia(MatrizCuadrada conjunto_de_numeros){
+        int longitud = conjunto_de_numeros.matriz.length;
         String secuencia = "";
         int colNumSiguiente;
         int filNumSiguiente;
@@ -52,7 +59,7 @@ public class Independencia {
                     filNumSiguiente = filas;
                 }
 
-                if(Double.compare(conjunto_de_numeros[filas][columnas], conjunto_de_numeros[filNumSiguiente][colNumSiguiente]) < 0){
+                if(Double.compare(conjunto_de_numeros.matriz[filas][columnas], conjunto_de_numeros.matriz[filNumSiguiente][colNumSiguiente]) < 0){
                     secuencia += "1";
                 }else{
                     secuencia += "0";
@@ -72,10 +79,12 @@ public class Independencia {
         if(secuencia.charAt(secuencia.length()-1) != secuencia.charAt(secuencia.length()-2)){
             Co++;
         }
-        return Co;
+        return Co+1;
     }
 
     double calcular_UCo(int n){
+        System.out.println("n: "+n);
+        System.out.println(Double.valueOf((2.0*n -1)/3.0));
         return Double.valueOf((2.0*n -1)/3.0);
     }
 
@@ -91,13 +100,22 @@ public class Independencia {
         return resultado;
     }
 
-    double Za_2(){
-        double degreesOfFreedom = conjunto_de_numeros.length-1;
+    double Za_2(double nivelInsignificancia){
+        double degreesOfFreedom = conjunto_de_numeros.matriz.length-1;
         RealDistribution chiSquaredDistribution = new ChiSquaredDistribution(degreesOfFreedom);
 
         double a_2 = nivelInsignificancia/2;
         double cdf = chiSquaredDistribution.inverseCumulativeProbability(1 - a_2);
         return cdf;
     };
+
+    double calculoValorZ(double nivelInsignificancia){
+        nivelInsignificancia = 1 - nivelInsignificancia;
+
+        NormalDistribution nd = new NormalDistribution(0,1);
+        double NumeroZ = nd.inverseCumulativeProbability(nivelInsignificancia);
+        return NumeroZ;
+        
+    }
 
 }
