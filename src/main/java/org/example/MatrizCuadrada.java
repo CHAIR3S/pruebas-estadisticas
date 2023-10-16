@@ -11,6 +11,10 @@ public class MatrizCuadrada {
         this.matriz = new double[p_numeroBase][p_numeroBase];
     }
 
+    public void setMatriz(double[][] matriz) {
+        this.matriz = matriz;
+    }
+
     void imprimirMatriz() {
         for (int fila = 0; fila < matriz.length; fila++) {
             for (int columna = 0; columna < matriz[fila].length; columna++) {

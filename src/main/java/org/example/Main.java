@@ -12,7 +12,7 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         // INSTANCIAS DE LAS PRUEBAS
-        Varianza varianza; 
+        Varianza varianza;
         Uniformidad uniformidad;
         Media media;
         Independencia independencia;
@@ -43,16 +43,22 @@ class Main {
         nivelSignificancia = scanner.nextDouble();
 
         // INGRESAR DATOS
-        MatrizCuadrada matriz = new MatrizCuadrada((int) Math.sqrt(cantidadDeDatos));
-        matriz.leerdatos(scanner);
+        // MatrizCuadrada matriz = new MatrizCuadrada((int) Math.sqrt(cantidadDeDatos));
+        // matriz.leerdatos(scanner);
+
+        // MATRIZ DE PRUEBA
+        MatrizCuadrada matrizCuadradaPrueba = new MatrizCuadrada(16);
+        double[][] matrizPrueba = { { .32, .726, .342, .016 }, { .018, .567, .515, .476 }, { .671, .302, .876, .854 },
+                { .083, .516, .524, .976 } };
+        matrizCuadradaPrueba.setMatriz(matrizPrueba);
 
         // INICIALIZACIÓN DE LAS INTANCIAS DE LAS PRUEBAS
         chiSquared = new ChiSquared(cantidadDeDatos);
-        varianza = new Varianza( matriz, chiSquared );
-        uniformidad = new Uniformidad(matriz);
-        independencia = new Independencia(matriz);
+        varianza = new Varianza(matrizCuadradaPrueba, chiSquared);
+        uniformidad = new Uniformidad(matrizCuadradaPrueba);
+        independencia = new Independencia(matrizCuadradaPrueba);
 
-        media = new Media(matriz);
+        media = new Media(matrizCuadradaPrueba);
 
         // SELECCIONAR MÉTODO Y HACERLO FUNCIONAR
         switch (opcionSeleccionada) {
@@ -66,7 +72,7 @@ class Main {
                 break;
             // Prueba de uniformidad
             case 3:
-            	uniformidad.realizarPrueba(nivelSignificancia);
+                uniformidad.realizarPrueba(nivelSignificancia);
                 break;
             // Prueba de indecencia
             case 4:
@@ -76,7 +82,7 @@ class Main {
 
         // MOSTRAR MATRIZ ORIGINAL
         System.out.println("--------MATRÍZ INGRESADA--------");
-        matriz.imprimirMatriz();
+        matrizCuadradaPrueba.imprimirMatriz();
 
         scanner.close();
     }
