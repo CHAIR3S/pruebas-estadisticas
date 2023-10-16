@@ -59,7 +59,7 @@ public class Varianza {
 
         System.out.println("---------CONCLUSIÓN-----------");
         if( varianza > limitInfe && varianza < limitSup ) System.out.println("No se puede rechazar h0, por lo tanto los números tienen una varianza de 1/12");
-        else System.out.println("No se puede rechazar h0, por lo tanto los números tienen una varianza de 1/12");
+        else System.out.println("Se rechaza h0, por lo tanto los números no tienen una varianza de 1/12");
     }
 
 
