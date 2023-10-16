@@ -28,7 +28,7 @@ class Main {
 
         do {
             System.out.print(
-                    "\n---------------------------------\nTENIENDO LAS SIGUIENTES OPCIONES, INGRESE EL NÚMERO DE MÉTODO A EVALUAR: \n1.- Prueba de media \n2.- Prueba de varianza \n3.- Prueba de uniformidad \n4.- Prueba de indecencia \n\nEscriba el número a continuación: ");
+                    "\n---------------------------------\nTENIENDO LAS SIGUIENTES OPCIONES, INGRESE EL NÚMERO DE MÉTODO A EVALUAR: \n1.- Prueba de media \n2.- Prueba de varianza \n3.- Prueba de uniformidad \n4.- Prueba de independencia \n\nEscriba el número a continuación: ");
             opcionSeleccionada = scanner.nextInt();
         } while (opcionSeleccionada < 1 || opcionSeleccionada > 4);
 
